@@ -65,11 +65,9 @@ public class OrderDetailsServiceImpl implements IOrderDetailsService {
 
 	@Override
 	public OrderDetails deleteOrderById(int orderId) {
-		// TODO Auto-generated method stub
+	
 		return null;
 	}
-
-	
 	
 	/*@Override
 	public OrderDetails viewAllOrders(int customerId) {	

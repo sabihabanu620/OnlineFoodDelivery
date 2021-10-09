@@ -26,18 +26,20 @@ public class FoodCartController {
 	
 	//Adding items To Cart
 	@PostMapping("/cart/{cartId}/item/{itemId}")
-	ResponseEntity<FoodCart> addItemToCart(@PathVariable("cartId") int CartId , @PathVariable("itemId") String  ItemId)
+	ResponseEntity<FoodCart> addItemToCart(@PathVariable("cartId") int CartId , @PathVariable("itemId") String  itemId)
 	{
-	 FoodCart crt=cartService.addItemToCart(CartId,ItemId);
+	 FoodCart crt=cartService.addItemToCart(CartId,itemId);
 	return new ResponseEntity<>(crt,HttpStatus.OK);
 	}
+	
 	//deleting items from cart
 	@DeleteMapping("/delete/{cartId}/item/{itemId}")
-	ResponseEntity<FoodCart> removeItem(@PathVariable("cartId") int CartId , @PathVariable("itemId") String  ItemId)
+	ResponseEntity<FoodCart> removeItem(@PathVariable("cartId") int CartId , @PathVariable("itemId") String  itemId)
 	{
-	 FoodCart crt=cartService.removeItem(CartId,ItemId);
+	 FoodCart crt=cartService.removeItem(CartId,itemId);
 	 return new ResponseEntity<>(crt,HttpStatus.OK);
 	}
+	
 	//removing cart
 	@DeleteMapping("/deletecart/{cartId}")
 	ResponseEntity<FoodCart> clearCart(@PathVariable("cartId") int CartId)
@@ -46,6 +48,7 @@ public class FoodCartController {
 	 return new ResponseEntity<>(crt,HttpStatus.OK);
 	}
 	
+	//increase quantity
 	@PutMapping("/increase/{cartId}/item/{itemId}/{quantity}")
 	ResponseEntity<FoodCart> increaseQuantity(@PathVariable("cartId") int cartId,@PathVariable("itemId") String itemId ,  @PathVariable("quantity") int quantity)
 	{
@@ -53,13 +56,15 @@ public class FoodCartController {
 	 return new ResponseEntity<>(cart,HttpStatus.OK);
 	}
 	
+	//decrease quantity
 	@PutMapping("/decrease/{cartId}/item/{itemId}/{quantity}")
 	ResponseEntity<FoodCart> reduceQuantity(@PathVariable("cartId") int cartId,@PathVariable("itemId") String itemId ,  @PathVariable("quantity") int quantity)
 	{
 	 FoodCart cart=cartService.reduceQuantity(cartId,itemId,quantity);
 	 return new ResponseEntity<>(cart,HttpStatus.OK);
 	}
-    
+	
+	//view cart items
 	@GetMapping("/cart")
 	ResponseEntity <List<FoodCart>> getAllItems()
 	   {

@@ -27,7 +27,7 @@ public class OrderDetailsController {
 	   {
 		  return new ResponseEntity<>(orderService.viewOrder(),HttpStatus.OK);
 	  }
-
+      
 	//add order
 	@PostMapping("/addorder")
 	ResponseEntity<OrderDetails> addOrder(@RequestBody OrderDetails order) {
@@ -45,19 +45,13 @@ public class OrderDetailsController {
 	 
 	//update order
 	@PutMapping("/order/update/{orderId}")
-	ResponseEntity<OrderDetails> updateOrder(@PathVariable("orderId") int id , @RequestBody OrderDetails order)
+	ResponseEntity<OrderDetails> updateOrder(@PathVariable("orderId") int orderId , @RequestBody OrderDetails order)
 	{
-		OrderDetails ord=orderService.updateOrder(id,order);
+		OrderDetails ord=orderService.updateOrder(orderId,order);
 		 return new ResponseEntity<>(ord,HttpStatus.OK);
 	}
 
-	/*@GetMapping("/order/{customerId}")
-	   ResponseEntity<OrderDetails> viewAllOrders(@PathVariable("customerId") int  customerId)
-	   {
-		OrderDetails order=orderService.viewAllOrders(customerId);
-		return new ResponseEntity<>(order,HttpStatus.OK);
-	  }
-	  */
+	//get customer order details
 	@GetMapping("/order/{customerId}/cart/{cartId}")
 	   ResponseEntity<OrderDetails> viewAllOrders(@PathVariable("customerId") int  customerId,@PathVariable("cartId") int  cartId)
 	   {
